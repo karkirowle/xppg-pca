@@ -74,7 +74,7 @@ def extract_fbank(wav_file, apply_cmvn=True):
     
     if apply_cmvn:
         cmvn_object = Cmvn()
-        cmvn_object.read_stats("cmvn.ark")
+        cmvn_object.read_stats("models/cmvn.ark")
         combined_features = Matrix(combined_features)
         cmvn_object.apply(combined_features, norm_vars=True)
         combined_features = combined_features.numpy()

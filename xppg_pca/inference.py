@@ -4,8 +4,8 @@ import numpy as np
 import warnings
 from glob import glob
 from collections import defaultdict
-from utils import PPGExtractor, XvectorExtractor
-from params import COPAS_PATH
+from xppg_pca.utils import PPGExtractor, XvectorExtractor
+from xppg_pca.params import COPAS_PATH
 from scipy.stats import pearsonr
 
 
@@ -29,6 +29,13 @@ class PPGXvectorPCAInference:
         pca_component = self.pca_object.transform(feature)[0, 0]
 
         return pca_component
+    
+    def return_images(self, file):
+        ppg = self.ppg_extractor.extract(file).detach().numpy()
+        xvec = self.xvector_extractor.extract(file)[0, 0, :]
+
+        return ppg, xvec
+
 
 
 
